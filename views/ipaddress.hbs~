@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <tytle>
+        <div style="text-align: center; margin: 500px">      HELLO!</div>
+    </tytle>
+
+</head>
+<body style="text-align: center; margin: 500px">
+    <div style="align: center">
+      <h3> {{{ip}}}</h3>
+    </div>
+      <br><br>
+      <div>
+	<ul>
+	<li>{{{headers.user-agent}}}</li>
+	<li>accept: {{{headers.accept}}}</li>
+	<li>accept-language: {{{headers.accept-language}}}</li>
+	<li>accept-encoding: {{{headers.accept-encoding}}}</li>
+	<li>dnt: {{{headers.dnt}}}</li>
+	<li>connection: {{{headers.connection}}}</li>
+	<li>upgrade-insecure-requests: {{{headers.upgrade-insecure-requests}}}</li>
+	<li>pragma: {{{headers.pragma}}}</li>
+	<li>cache-control: {{{headers.cache-control}}}</li>
+	</ul>
+      </div>
+      <!-- <script type="text/javascript">
+	   if ({{{headers.host}}} === "::ffff:127.0.0.1") {
+	   document.location.href = "https://vk.com";
+	   console.log("hello");
+	   }
+	   console.log("by");
+	   </script> -->
+    <script src="\{{static '/public/js/hist.js'}}"></script>
+</body>
+</html>
