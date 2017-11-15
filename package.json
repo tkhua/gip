@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "express": "^4.16.2",
-    "hbs": "^4.0.1"
+    "hbs": "^4.0.1",
+    "package.json": "^2.0.1"
   }
 }
+"scripts": {
+    "start": "node server.js"
+},
+"main": "server.js"

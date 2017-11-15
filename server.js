@@ -1,27 +1,15 @@
-    // http://tinyw.in/epJb  //vk.com
-    // http://tinyw.in/2rJq  // 109.86.247.221:3000/ipaddress
-
 let path = require("path");
 let express = require("express");
-let app = express();
+let server = express();
 
-app.use('/js', express.static(__dirname + '/public'));
-// console.log(express.static);
+server.use('/js', express.static(__dirname + '/public'));
 
-app.set('view engine', 'hbs');
-// let hbs = require('hbs').create({
-//     helpers: {
-//         static: { function(name) {
-//             return require('./public/js/hist').map(name);
-//         }
-//         }
-//     }
-// });
-// hbs.localsAsTemplateData(app);
+server.set('view engine', 'hbs');
 
-app.set("port", process.env.PORT || 3000);
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
-app.get("/", function (req, res) {
+server.get("/", function (req, res) {
     let fs = require('fs');
     let t = new Date().toLocaleString();
 
@@ -60,27 +48,27 @@ app.get("/", function (req, res) {
     });
 });
 
-app.get('/public/js', function (req, res) {
-    res.render('public/js')
+server.get('/public/js', function (req, res) {
+    res.render('public/js');
 });
 
 
-app.get("/webrtc", function (req, res) {
+server.get("/webrtc", function (req, res) {
     res.render("webrtc");
 });
 
-app.use(function (req, res, next) {
+server.use(function (req, res, next) {
     res.status(404);
     res.render("404");
 });
 
-app.use(function (err, req, res) {
+server.use(function (err, req, res) {
     console.error(err.stack);
     res.type("text/plain");
     res.status(500);
     res.render("500");
 });
 
-app.listen(app.get("port"), function () {
-    console.log("Express запущен на: http://localhost:" + app.get("port") + ":  Нажмите Сtrl+C для завершения");
+server.listen(server_port, server_ip_address, function () {
+    console.log("Listening on " + server_ip_address + ", port " + server_port);    
 });
